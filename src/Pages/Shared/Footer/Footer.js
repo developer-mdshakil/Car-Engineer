@@ -6,7 +6,7 @@ import { FaGoogle, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 const Footer = () => {
     return (
         <footer className="footer p-10 bg-black text-white">
-        <div className='w-64'>
+        <div className='w-64 ml-0 lg:ml-8'>
          <img src={logo} alt="" srcset="" />
          <p>Edwin Diaz is a software and web technologies engineer, a life coach trainer who is also a serial .</p>
             <ul className='flex items-center mt-6'>

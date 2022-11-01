@@ -6,9 +6,11 @@ import Header from '../Pages/Shared/Header/Header';
 const Main = () => {
     return (
         <div>
+            <div className='max-w-screen-xl mx-auto'>
             <Header></Header>
             <Outlet />
-            <Footer></Footer>
+        </div>
+        <Footer></Footer>
         </div>
     );
 };
