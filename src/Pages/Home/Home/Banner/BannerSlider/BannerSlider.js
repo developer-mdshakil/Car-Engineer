@@ -7,8 +7,8 @@ const BannerSlider = ({ slider }) => {
     const {image, id, prev, next} = slider;
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full">
-            <div className='carousel-img h-80'>
-            <img src={image} alt="" className="w-full h-full" />
+            <div className='carousel-img'>
+            <img src={image} alt="" className="w-full rounded-xl" />
             </div>
             <div className="absolute text-white transform -translate-y-1/2 left-24 top-1/2">
             <h1 className='text-5xl font-bold mb-8'>
