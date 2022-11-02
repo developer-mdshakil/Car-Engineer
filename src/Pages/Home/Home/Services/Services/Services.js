@@ -32,7 +32,7 @@ const Services = () => {
                 }
             </div>
             <div className='text-center mt-12'>
-                    <Link><button className='btn btn-outline btn-warning'>More Service</button></Link>
+            <Link><button className='btn bg-transparent border-red-500 text-red-500'>More Service</button></Link>
                 </div>
         </div>
     );

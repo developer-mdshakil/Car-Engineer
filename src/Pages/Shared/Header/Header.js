@@ -27,6 +27,7 @@ const Header = () => {
               <li><Link>Services</Link></li>
               <li><Link>Blog</Link></li>
               <li><Link>Contact</Link></li>
+              <li><Link to='/signin'>Signin</Link></li>
           </ul>
         </div>
         <div className="navbar-end">
