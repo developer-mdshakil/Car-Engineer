@@ -1,8 +1,17 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.svg';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Header = () => {
+  const { user, LogOutUser } = useContext(AuthContext);
+  const logOutHandler = () => {
+    LogOutUser()
+    .then(()=> {
+      alert('Sign-out successful.')
+    }).catch(err => console.error(err))
+  }
     return (
         <div className="navbar h-20 mb-12 pt-12">
         <div className="navbar-start">
@@ -14,7 +23,7 @@ const Header = () => {
               <li><Link to='/home'>Home</Link></li>
               <li><Link>About</Link></li>
               <li><Link>Services</Link></li>
-              <li><Link>Blog</Link></li>
+              <li><Link to='/orders'>Orders</Link></li>
               <li><Link>Contact</Link></li>
             </ul>
           </div>
@@ -25,13 +34,35 @@ const Header = () => {
               <li><Link to='/home'>Home</Link></li>
               <li><Link>About</Link></li>
               <li><Link>Services</Link></li>
-              <li><Link>Blog</Link></li>
+              <li><Link to='/orders'>Orders</Link></li>
               <li><Link>Contact</Link></li>
-              <li><Link to='/signin'>Signin</Link></li>
+              {user?.email ?
+              <li><Link onClick={logOutHandler} to='/signin'>SignOut</Link></li>
+              :
+                <li><Link to='/signin'>Signin</Link></li>
+              }
           </ul>
         </div>
         <div className="navbar-end">
           <Link><button className="btn btn-outline btn-warning">Appointment</button></Link>
+          <div className="dropdown dropdown-end ml-6">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user?.email ? user.photoURL : 'https://placeimg.com/80/80/people'} alt=''/>
+                </div>
+              </label>
+              <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+              <li><Link>{user?.displayName}</Link></li>
+                <li>
+                  <Link className="justify-between">
+                    Edit Profile
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+                <li><Link>Settings</Link></li>
+                <li><Link to='/signin'>Sign Out</Link></li>
+              </ul>
+            </div>
         </div>
       </div>
     );
