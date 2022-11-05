@@ -2,12 +2,16 @@ import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FaFacebook, FaGoogle, FaLinkedin } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import signImg from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const SignIN = () => {
     const { LogInUser } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/'
 
     //set error if error
     const [error, setError] = useState('');
@@ -23,6 +27,8 @@ const SignIN = () => {
             const user = result.user;
             console.log(user);
             setError('')
+            navigate(from, {replace: true})
+            alert('sign in successfull')
             form.reset();
         }).catch(error => {
             console.error(error)

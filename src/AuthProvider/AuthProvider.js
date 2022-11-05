@@ -26,20 +26,24 @@ const AuthProvider = ( { children }) => {
 
     //declare a function with create user here
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     //signinUser here
     const LogInUser = (email, password)=> {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     //update user profile here with email
     const userProfile = (profile) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, profile)
     }
     //user logout here
     const LogOutUser = () => {
+        setLoading(true);
         return signOut(auth)
     }
 
@@ -47,6 +51,7 @@ const AuthProvider = ( { children }) => {
     useEffect( ()=> {
          const unsubscribe = onAuthStateChanged(auth, (currentUser)=> {
             setUser(currentUser);
+            setLoading(false)
         })
         return ()=> {
             return unsubscribe();
@@ -58,7 +63,8 @@ const AuthProvider = ( { children }) => {
         createUser,
         LogInUser,
         userProfile,
-        LogOutUser
+        LogOutUser,
+        loading
     }
 
     return (

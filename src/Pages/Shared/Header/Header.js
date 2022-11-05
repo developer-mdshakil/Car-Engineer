@@ -23,7 +23,14 @@ const Header = () => {
               <li><Link to='/home'>Home</Link></li>
               <li><Link>About</Link></li>
               <li><Link>Services</Link></li>
+              {user?.email ?
+              <>
               <li><Link to='/orders'>Orders</Link></li>
+              <li><Link onClick={logOutHandler} to='/signin'>SignOut</Link></li>
+              </>
+              :
+                <li><Link to='/signin'>Signin</Link></li>
+              }
               <li><Link>Contact</Link></li>
             </ul>
           </div>
@@ -34,13 +41,15 @@ const Header = () => {
               <li><Link to='/home'>Home</Link></li>
               <li><Link>About</Link></li>
               <li><Link>Services</Link></li>
-              <li><Link to='/orders'>Orders</Link></li>
-              <li><Link>Contact</Link></li>
               {user?.email ?
+              <>
+              <li><Link to='/orders'>Orders</Link></li>
               <li><Link onClick={logOutHandler} to='/signin'>SignOut</Link></li>
+              </>
               :
                 <li><Link to='/signin'>Signin</Link></li>
               }
+              <li><Link>Contact</Link></li>
           </ul>
         </div>
         <div className="navbar-end">
